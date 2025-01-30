@@ -116,6 +116,24 @@ if game.gameId == 3183403065 and game.PlaceId ~= 8304191830 then
             end
         end
     end)
+
+    task.spawn(function()
+        while true do task.wait(1)
+            if game:GetService("Workspace")["_DATA"].GameFinished.Value == true then
+                if game:GetService("Players").LocalPlayer.PlayerGui.ResultsUI.Holder.Visible == true then
+                    for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.ResultsUI.Holder.Buttons.Next.Activated)) do
+                        v.Function()
+                        wait(1)
+                    end  
+                else
+                    for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.ResultsUI.Finished.NextRetry.Activated)) do
+                        v.Function()
+                        wait(1)
+                    end
+                end
+            end
+        end
+    end)
 end
 
 local antiafk = getconnections or get_signal_cons;
