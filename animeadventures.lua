@@ -51,6 +51,14 @@ if game.gameId == 3183403065 and game.PlaceId ~= 8304191830 then
     local player = Players.LocalPlayer
     local playerGui = player:WaitForChild("PlayerGui")
 
+    repeat task.wait(1)
+        for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.VoteStart.Holder.ButtonHolder.Yes.Activated)) do
+            v.Function()
+            wait(1)
+        end
+    until playerGui:FindFirstChild("VoteStart").Enabled == false
+    print("passed vote start")
+
     local function findPriorityCard(roguelikeSelect, focusCardPriority)
         local mainFrame = roguelikeSelect:FindFirstChild("Main")
         if mainFrame then
@@ -94,8 +102,13 @@ if game.gameId == 3183403065 and game.PlaceId ~= 8304191830 then
                 if roguelikeSelect and roguelikeSelect.Enabled then
                     local index, cardName = findPriorityCard(roguelikeSelect, focusCardPriority)
                     if index then
-                        print(index, cardName)
-                        repeat task.wait()
+                        -- print(index, cardName, typeof(index))
+                        if index == 2 then
+                            index = 3
+                        elseif index == 3 then
+                            index = 2
+                        end
+                        repeat task.wait(0.5)
                             game:GetService("ReplicatedStorage").endpoints.client_to_server.select_roguelike_option:InvokeServer(tostring(index))
                         until not roguelikeSelect or not roguelikeSelect.Enabled or not getgenv().autoPickCard
                     end
@@ -104,3 +117,20 @@ if game.gameId == 3183403065 and game.PlaceId ~= 8304191830 then
         end
     end)
 end
+
+local antiafk = getconnections or get_signal_cons;
+if antiafk then
+	for i, v in pairs(antiafk(game.Players.LocalPlayer.Idled)) do
+		if v["Disable"] then
+			v["Disable"](v);
+		elseif v["Disconnect"] then
+			v["Disconnect"](v);
+		end;
+	end;
+	for i, v in next, antiafk(game.Players.LocalPlayer.Idled) do
+		v:Disable();
+	end;
+    warn("Anti AFK Already Loaded");
+else
+	game.Players.LocalPlayer:Kick("Missing getconnections() functions executer not supported");
+end;
