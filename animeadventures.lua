@@ -17,6 +17,7 @@ getgenv().focusCardPriority = {
     "Random Curses I",
     "Enemy Health I",
     "Range II",
+    "Enemy Regen I",
     "Enemy Speed II",
     "Enemy Speed I",
     "Attack II",
