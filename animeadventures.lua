@@ -1,9 +1,6 @@
 getgenv().autoPickCard = true
 getgenv().focusCardPriority = {
     "New Path",
-    "Double Range",
-    "Double Attack",
-    "Double Cooldown",
     "Enemy Shield III",
     "Enemy Health III",
     "Enemy Regen III",
@@ -29,7 +26,10 @@ getgenv().focusCardPriority = {
     "Cooldown I",
     "Boss Damage III",
     "Boss Damage II",
-    "Boss Damage I",
+    "Boss Damage II",
+    "Double Range",
+    "Double Attack",
+    "Double Cooldown",
     "Random Blessings III",
     "Random Blessings II",
     "Random Blessings I",
