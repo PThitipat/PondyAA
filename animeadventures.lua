@@ -16,6 +16,7 @@ getgenv().focusCardPriority = {
     "Range II",
     "Enemy Regen I",
     "Enemy Speed II",
+    "Enemy Shield I",
     "Enemy Speed I",
     "Attack II",
     "Enemy Speed III",
